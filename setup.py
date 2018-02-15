@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="BatchImageResize",
-    version='0.3.2',
+    version='0.3.3',
     description="Batch resize and compress images.",
     long_description="Batch resize and compress JPG and PNG images.",
     author="Ramil Minnigaliev",
