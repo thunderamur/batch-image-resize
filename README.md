@@ -21,5 +21,5 @@
 ### Run ###
 
 Just use in terminal (command prompt on windows) following commands:
-* batch-image-resize -in=<dir> [-out=<dir>] -size=<0x0> -quality=<1..95>
+* batch-image-resize -in=<dir> [-out=<dir>] -size=<0x0> -quality=<1..100>
 * batch-image-resize-qt5
