@@ -102,10 +102,11 @@ class Resize_Qt5_Window(QtWidgets.QMainWindow):
             if 'percent' in data:
                 self.ui.progressBar.setValue(int(data['percent']))
                 msg = '{}/{} ({}%) : {}'.format(data['count'], data['total_count'], data['percent'], data['src'])
+                self.ui.plainTextEdit_Output.insertPlainText('{}\n'.format(msg))
+                self.ui.plainTextEdit_Output.moveCursor(QtGui.QTextCursor.End)
             else:
                 msg = 'Время выполнения: {} секунд'.format(data['execution_time'])
-            self.ui.plainTextEdit_Output.insertPlainText('{}\n'.format(msg))
-            self.ui.plainTextEdit_Output.moveCursor(QtGui.QTextCursor.End)
+                self.ui.statusbar.showMessage(msg)
         except Exception as e:
             print(e)
 
