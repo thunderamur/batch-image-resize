@@ -10,13 +10,13 @@
 #### on linux ####
 * Create virtual environment: virtualenv -p python3 < name >
 * source < name >/bin/activate < name >
-* pip install Batch_Image_Resize
+* pip install BatchImageResize
 
 #### on windows ####
 * pip install virtualenv
 * virtualenv < name >
 * < name >\Scripts\activate
-* pip install Batch_Image_Resize
+* pip install BatchImageResize
 
 ### Run ###
 
