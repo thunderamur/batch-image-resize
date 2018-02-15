@@ -3,7 +3,7 @@
 ### About ###
 
 * Batch Image Resize - Tool for batch resize and compress JPG and PNG images.
-* Version 0.3.6
+* Version 0.3.7
 
 ### Install ###
 

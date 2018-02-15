@@ -4,11 +4,11 @@ from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtCore import QObject, pyqtSignal, QThread
 from queue import Queue, Empty
 from .ui.MainWindow import Ui_MainWindow
-from .core import Resize
+from .core import Resizer
 from .utils import start_thread
 
 
-class Resize_GUI(Resize):
+class Resizer_GUI(Resizer):
     def __init__(self, input_dir, output_dir, size, quality):
         super().__init__(input_dir, output_dir, size, quality)
         self.message_queue = Queue()
@@ -53,11 +53,11 @@ class GuiReceiver(QObject):
         self.is_alive = False
 
 
-class Resize_Qt5_Window(QtWidgets.QMainWindow):
+class Resizer_Qt5_Window(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        self.resize = None
-        self.resize_thread = None
+        self.resizer = None
+        self.resizer_thread = None
         # UI
         self.initUI()
 
@@ -81,21 +81,21 @@ class Resize_Qt5_Window(QtWidgets.QMainWindow):
         self.run(src, dst, size, quality)
 
     def run(self, src, dst, size, quality):
-        resize = Resize_GUI(src, dst, size, quality)
+        resizer = Resizer_GUI(src, dst, size, quality)
 
-        listener = GuiReceiver(resize.message_queue)
+        listener = GuiReceiver(resizer.message_queue)
         listener.gotMessage.connect(self.show_progress)
         listener_thread = QThread()
         listener.moveToThread(listener_thread)
         listener_thread.started.connect(listener.poll)
         listener_thread.start()
 
-        resize.listener = listener
-        resize.listener_thread = listener_thread
-        resize_thread = start_thread(resize.run)
+        resizer.listener = listener
+        resizer.listener_thread = listener_thread
+        resizer_thread = start_thread(resizer.run)
 
-        self.resize = resize
-        self.resize_thread = resize_thread
+        self.resizer = resizer
+        self.resizer_thread = resizer_thread
 
     def show_progress(self, data):
         try:
@@ -133,7 +133,7 @@ class Resize_Qt5_Window(QtWidgets.QMainWindow):
 
 def main():
     app = QtWidgets.QApplication(argv)
-    window = Resize_Qt5_Window()
+    window = Resizer_Qt5_Window()
     window.show()
     exit(app.exec_())
 

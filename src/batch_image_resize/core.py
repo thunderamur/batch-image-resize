@@ -7,7 +7,7 @@ from threading import Lock
 from .utils import start_threads
 
 
-class Resize:
+class Resizer:
     """Класс для изменения размеров и сжатия изображений"""
     def __init__(self, input_dir, output_dir, size, quality):
         self.input_dir = input_dir

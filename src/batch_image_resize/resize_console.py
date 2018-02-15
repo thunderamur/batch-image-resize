@@ -1,8 +1,8 @@
 from sys import argv
-from .core import Resize
+from .core import Resizer
 
 
-class ResizeConsole(Resize):
+class ResizerConsole(Resizer):
 
     def show_progress(self, src, percent, count, total_count):
         print('{}/{} ({}%) : {}'.format(count, total_count, percent, src))
@@ -35,7 +35,7 @@ def main():
     if input_dir and size and quality:
         if not output_dir:
             output_dir = input_dir + '_CONVERTED'
-        c = ResizeConsole(input_dir, output_dir, size, quality)
+        c = ResizerConsole(input_dir, output_dir, size, quality)
         c.run()
     else:
         print('Usage: batch-image-resize -in=<dir> [-out=<dir>] -size=<0x0> -quality=<1..95>')
