@@ -18,6 +18,7 @@ setup(
     python_requires='>=3.5',
     install_requires=[
         "pillow>=5.0",
+        "PyQt5>=5.9",
     ],
     entry_points={
         'console_scripts': [
